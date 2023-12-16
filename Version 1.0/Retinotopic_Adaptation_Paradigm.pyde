@@ -702,9 +702,12 @@ def draw():
             
             file.close()
             
-            
-            file = open("reaction_times.csv", "a")
 
+            file = open("reaction_times.csv", "a")
+            
+            for rt in response_request.reaction_times_trials:
+                file.write(str(rt)+",")
+            
             file.write("\n")
             
             file.close()
