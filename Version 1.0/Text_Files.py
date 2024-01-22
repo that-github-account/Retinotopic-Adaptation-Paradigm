@@ -70,8 +70,19 @@ class Text(object):
         textAlign(CENTER, TOP)
         textSize(35)
         text("This is a pass.", self.WX/2, self.WY*0.3)
+
+    def training_instructions_display(self):
+       
+        self.generic_instructions_layout()
         
-        
+        fill(255)
+
+        textAlign(CENTER, CENTER)
+        textSize(25)
+        msg = "You will now complete a training phase consisting of 10 trials. \n\nPlease fixate on the red cross and respond when it turns green by pressing (D) for a LAUNCH event or (K) for a PASS event. \n\nWhen you get 80% correct, you will be able to proceed to the main experiment. You have 5 attempts at this after which the experiment will be terminated if you do not succeed."
+        text(msg, self.WX/2, self.WY/2, self.WX*0.9, self.WY*0.9)
+                
+                                
     def practice_instructions_display(self):
        
         self.generic_instructions_layout()

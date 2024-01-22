@@ -25,6 +25,10 @@ class Responses(object):
         
         self.reaction_times_practice = []
         self.reaction_times_trials = []
+        self.reaction_times_training = []
+        
+        self.response_list_training = []
+        self.prompt_list_training = []
         
     def display(self, locationX, locationY):
         
@@ -139,5 +143,51 @@ class Responses(object):
                 self.reaction_times_practice.append(self.time_offset - self.time_onset)
                 
                 self.response_dictionary_practice["PASS"] = self.response_dictionary_practice["PASS"] + 1
+                
+                self.awaiting_response = False
+                
+                
+    def get_response_training(self, locationX, locationY, overlap):
+        self.display(locationX, locationY)
+        self.awaiting_response = not self.skip_response
+        
+        if self.record_time == True:
+            self.time_onset = millis()
+            self.record_time = False
+        
+        if keyPressed:
+            
+            if key == "d":
+                
+                if self.record_time == False:
+                    self.time_offset = millis()
+                    self.record_time = True
+                
+                self.reaction_times_training.append(self.time_offset - self.time_onset)
+                
+                self.response_list_training.append("launch")
+                if overlap == 0:
+                    overlap = "launch"
+                else:
+                    overlap = "pass"
+                self.prompt_list_training.append(overlap)
+                
+                self.awaiting_response = False
+                
+                
+            if key == "k":
+                
+                if self.record_time == False:
+                    self.time_offset = millis()
+                    self.record_time = True
+                
+                self.reaction_times_training.append(self.time_offset - self.time_onset)
+                
+                self.response_list_training.append("pass")
+                if overlap == 0:
+                    overlap = "launch"
+                else:
+                    overlap = "pass"
+                self.prompt_list_training.append(overlap)
                 
                 self.awaiting_response = False
